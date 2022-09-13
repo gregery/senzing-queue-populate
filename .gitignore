@@ -1,3 +1,8 @@
+# proejct specific
+config.json
+queue_populate.code-workspace
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
