@@ -1,0 +1,22 @@
+{
+    "rabbitmq_config": {
+        "host": "localhost",
+        "port": "5672",
+        "queue_name": "",
+        "username" : "user",
+        "password" : ""
+    },
+    "senzing_config": {
+      "PIPELINE" : {
+        "CONFIGPATH" : "/home/user/senzing/etc",
+        "SUPPORTPATH" : "/home/user/senzing/data",
+        "RESOURCEPATH" : "/home/user/senzing/resources"
+      },
+      "SQL" : {
+        "CONNECTION" : "sqlite3://na:na@/home/user/senzing/var/sqlite/G2C.db"
+      },
+      "VERBOSE_LOGGING" : false
+    }
+}
+
+
