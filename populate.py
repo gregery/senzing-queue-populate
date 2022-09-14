@@ -1,8 +1,8 @@
 import rabbitmq
 import senzing_server
+import work_item
 
-def run():
-    config_file = 'config.json'
+def queueAll(config_file):
     #connect to rabbitmq
     queue = rabbitmq.RabbitMQConnection(config_file)
     queue.connect()
@@ -17,7 +17,7 @@ def run():
         if item is None:
             break
         #queue item
-        queue.publish(item)
+        queue.publish(work_item.BuildWorkItem(*item))
         count = count + 1
         if count % 10 == 0:
             print('inserted ' + str(count))
@@ -29,4 +29,5 @@ def run():
     queue.shutdown()
 
 if __name__ == "__main__":
-    run()
+    config_file = 'config.json'
+    queueAll(config_file)

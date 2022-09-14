@@ -4,8 +4,6 @@ import os
 
 from senzing import G2Engine, G2Exception, G2EngineFlags, G2Diagnostic
 
-import work_item
-
 class SenzingServer:
     def __init__(self, config_filename):
         self.headers = None
@@ -60,7 +58,7 @@ class SenzingServer:
         val[1] = val[1].strip('"')
         val[2] = val[2].strip('"')
         #create the json
-        return work_item.BuildWorkItem(*val)
+        return val
 
     def closeExportEntityIDs(self):
         self.g2_engine.closeExport(self.export_handle)
