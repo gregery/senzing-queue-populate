@@ -8,11 +8,11 @@ If you don't already have Senzing installed, instructions can be found here [Sen
 
 pika -- RabbitMQ Client must be installed
 
-###Linux
+### Linux
 ```
 sudo pip install pika
 ```
-###Windows
+### Windows
 ```
 pip install pika
 ```
