@@ -1,6 +1,7 @@
 # proejct specific
 config.json
 queue_populate.code-workspace
+input.csv
 
 
 # Byte-compiled / optimized / DLL files

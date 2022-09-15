@@ -5,6 +5,7 @@ class RabbitMQConnection:
     def __init__(self, config_filename):
         self.connection=None
         self.channel=None
+        self.num_published = 0
         required_keys = ['host','port','queue_name','username','password']
         with open(config_filename, mode='rt', encoding='utf-8') as config_file:
             self.config_params = json.load(config_file)['rabbitmq_config']
@@ -20,7 +21,10 @@ class RabbitMQConnection:
 
     def publish(self, item):
         self.channel.basic_publish(exchange='', routing_key=self.config_params['queue_name'], body=item)
+        self.num_published = self.num_published + 1
 
     def shutdown(self):
         self.connection.close()
 
+    def getNumPublished(self):
+        return self.num_published
