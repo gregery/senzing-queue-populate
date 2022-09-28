@@ -20,9 +20,9 @@ class SenzingServer:
             self.config_params = json.load(config_file)['senzing_config']
         for required_key in required_keys:
             if required_key[0] not in self.config_params:
-                raise Exception('config is missing required key: ' + required_key)
+                raise Exception(f'config is missing required key: {required_key}')
             if required_key[1] not in self.config_params[required_key[0]]:
-                raise Exception('config is missing required key: ' + required_key)
+                raise Exception(f'config is missing required key: {required_key}')
 
         #initialize the engine
         self.g2_engine = G2Engine()
