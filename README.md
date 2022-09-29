@@ -3,7 +3,13 @@
 This is a utility that adds work items in batch to RabbitMQ for the use of products downstream from Senzing.
 
 ## Dependencies
-senzing -- Senzing's Python API must be in the PYTHONPATH
+senzing -- Senzing's environment must be sourced.  If senzing is installed into /home/user, the environment can be sourced as follows
+```
+. /home/user/senzing/setupEnv
+```
+
+This utility will automatically use the senzing configuration associated with your installation.
+
 If you don't already have Senzing installed, instructions can be found here [Senzing quickstart guide](https://senzing.zendesk.com/hc/en-us/articles/115002408867-Quickstart-Guide)
 
 pika -- RabbitMQ Client must be installed
