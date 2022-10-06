@@ -20,7 +20,12 @@ class RabbitMQConnection:
         self.channel.queue_declare(self.config_params['queue_name'])
 
     def publish(self, item):
-        self.channel.basic_publish(exchange='', routing_key=self.config_params['queue_name'], body=item)
+        try:
+            self.channel.basic_publish(exchange='', routing_key=self.config_params['queue_name'], body=item)
+        except pika.exceptions.StreamLostError:
+            print('RabbitMQ connection lost.....  reconnecting...')
+            self.reconnect()
+            self.channel.basic_publish(exchange='', routing_key=self.config_params['queue_name'], body=item)
         self.num_published = self.num_published + 1
 
     def shutdown(self):
@@ -28,3 +33,10 @@ class RabbitMQConnection:
 
     def getNumPublished(self):
         return self.num_published
+    
+    def reconnect(self):
+        try:
+            self.shutdown()
+        except Exception:
+            pass
+        self.connect()
