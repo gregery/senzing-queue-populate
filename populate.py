@@ -42,6 +42,7 @@ def queueList(config, input_file, queue, outfilename):
 
     items = {}
 
+    lookup_count = 0
     #look up all of the records and de-dupe on ENTITY_ID
     with open(input_file, mode='rt', encoding='utf8') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -51,9 +52,13 @@ def queueList(config, input_file, queue, outfilename):
                 if 'RESOLVED_ENTITY' in item:
                     entity_id = item['RESOLVED_ENTITY']['ENTITY_ID']
                     items[entity_id] = (row['DATA_SOURCE'], row['RECORD_ID'])
+                    lookup_count += 1
             except senzing.G2Exception as ex:
                 print(F'ERROR: unable to queue item {row}')
                 print(ex)
+            if lookup_count % 100 == 0:
+                print(F'looked up {lookup_count} records')
+    print(F'looked up {lookup_count} records')
 
     if outfilename:
         with open(outfilename, 'w') as csvfile:
