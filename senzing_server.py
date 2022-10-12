@@ -63,6 +63,6 @@ class SenzingServer:
 
     def getEntityByRecordID(self, dsrc_code, record_id):
         response_bytearray = bytearray()
-        self.g2_engine.getEntityByRecordID(dsrc_code, record_id, response_bytearray)
+        self.g2_engine.getEntityByRecordID(dsrc_code, record_id, response_bytearray, G2EngineFlags.G2_ENTITY_INCLUDE_RECORD_DATA)
         return json.loads(response_bytearray.decode().strip())
 
